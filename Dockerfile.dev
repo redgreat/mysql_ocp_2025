@@ -1,0 +1,24 @@
+# 开发环境 Dockerfile
+FROM node:18-alpine
+
+# 设置工作目录
+WORKDIR /app
+
+# 安装 dumb-init 用于信号处理
+RUN apk add --no-cache dumb-init
+
+# 复制 package.json 和 package-lock.json
+COPY package*.json ./
+
+# 安装依赖（包括开发依赖）
+RUN npm ci
+
+# 复制源代码
+COPY . .
+
+# 暴露端口
+EXPOSE 3000
+
+# 使用 dumb-init 启动开发服务器
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]

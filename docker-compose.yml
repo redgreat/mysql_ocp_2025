@@ -1,15 +1,14 @@
-version: '3.8'
-
 services:
-  mysql-practice-exam:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: mysql-practice-exam
-    ports:
-      - "8080:80"
+  mysqlocp:
+    container_name: mysqlocp
+    hostname: mysqlocp
+    image: registry.cn-hangzhou.aliyuncs.com/redgreat/mysql_ocp:latest
     restart: unless-stopped
+    ports:
+      - "8094:80"
     environment:
+      - TZ=Asia/Shanghai
+      - DISABLE_IPV6=true
       - NODE_ENV=production
     healthcheck:
       test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost/health"]
@@ -17,19 +16,14 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-
-  # 开发环境服务
-  mysql-practice-exam-dev:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    container_name: mysql-practice-exam-dev
-    ports:
-      - "3000:3000"
-    volumes:
-      - .:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-    profiles:
-      - dev
+    deploy:
+        resources:
+          limits:
+            memory: 1G
+          reservations:
+            memory: 8M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "100m"
+        max-file: "2"

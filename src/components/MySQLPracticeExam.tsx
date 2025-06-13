@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { BookOpen, Database, ChevronRight, ChevronLeft, Check, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import QuestionNavigator from './QuestionNavigator';
+import React, { useState, useEffect } from 'react'
+import { BookOpen, Database, ChevronRight, ChevronLeft, Check, X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import QuestionNavigator from './QuestionNavigator'
 
 interface Option {
   letter: string;
@@ -101,7 +101,7 @@ const MySQLPracticeExam: React.FC = () => {
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="text-xl font-semibold text-gray-700 flex items-center">
-            <Database className="mr-2" /> MySQL Practice Exam
+            <Database className="mr-2" /> MySQL OCP 2025
           </div>
           <div className="flex items-center">
             <span
@@ -263,11 +263,11 @@ const MySQLPracticeExam: React.FC = () => {
       {/* Footer */}
       <footer className="border-t bg-white mt-12 py-4">
         <div className="container mx-auto px-4 text-center text-sm text-gray-600">
-          @<a href="https://github.com/redgreat" className="text-blue-600 hover:underline">wangcw</a> | 页面内容均由 AI 生成，仅供参考
+          Copyright © 2025 wangcw | 页面内容均由 AI 生成，仅供参考
         </div>
       </footer>
     </div>
   );
 };
 
-export default MySQLPracticeExam; 
+export default MySQLPracticeExam;
